@@ -209,12 +209,12 @@ function App() {
               </div>
 
               <div className="stat-card">
-                <h3>29</h3>
+                <h3>40+</h3>
                 <p>Publications</p>
               </div>
 
               <div className="stat-card">
-                <h3>3</h3>
+                <h3>3+</h3>
                 <p>Indian Patents Published</p>
               </div>
 
