@@ -100,6 +100,74 @@ img {
 }
 
 /* =========================
+   NAVBAR DROPDOWN
+========================= */
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.nav-dropdown-button:hover {
+  color: var(--primary);
+}
+
+.nav-dropdown-button span {
+  font-size: 0.75rem;
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 16px);
+  left: 0;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+  z-index: 1100;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-dropdown-menu a {
+  display: block;
+  padding: 11px 13px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.nav-dropdown-menu a:hover {
+  background: #eff6ff;
+}
+
+/* =========================
    HERO SECTION
 ========================= */
 
@@ -267,7 +335,7 @@ img {
 ========================= */
 
 .section {
-  padding: 100px 0;
+  padding: 30px 0;
 }
 
 .section-light {
@@ -275,7 +343,7 @@ img {
 }
 
 .section-header {
-  margin-bottom: 55px;
+  margin-bottom: 25px;
 }
 
 .section-header p {
@@ -301,14 +369,12 @@ img {
 
 .about-grid {
   display: grid;
-
   grid-template-columns: 1fr 1fr;
-
-  gap: 50px;
+  gap: 40px;
 }
 
 .about-card {
-  padding: 35px;
+  padding: 15px;
 
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -345,7 +411,7 @@ img {
 
   border-radius: 16px;
 
-  background: #1e3a5f;
+  background: #bc5757;
 
   color: white;
 
@@ -388,28 +454,90 @@ img {
 
 .skill-card {
   padding: 22px;
-
   background: white;
-
   border: 1px solid var(--border);
   border-radius: 10px;
-
   text-align: center;
-
   font-weight: 700;
-
+  color: var(--dark);
   transition:
     transform 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
     border-color 0.3s ease,
     box-shadow 0.3s ease;
 }
 
 .skill-card:hover {
   transform: translateY(-5px);
-
+  background: var(--primary);
+  color: white;
   border-color: var(--primary);
+  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.25);
+}
 
-  box-shadow: 0 15px 30px rgba(15, 23, 42, 0.08);
+.skill-card:hover span {
+  color: white;
+}
+
+/* =========================
+   TEACHING EXPERTISE
+========================= */
+
+.teaching-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+  gap: 25px;
+}
+
+.teaching-card {
+  padding: 28px;
+
+  background: white;
+
+  border: 1px solid var(--border);
+  border-radius: 16px;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.teaching-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 18px 35px rgba(15, 23, 42, 0.07);
+}
+
+.teaching-card h3 {
+  margin-top: 0;
+
+  font-size: 1.15rem;
+
+  color: var(--dark);
+}
+
+.subject-list {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+.subject-list span {
+  padding: 8px 12px;
+
+  border-radius: 8px;
+
+  background: #eff6ff;
+
+  color: var(--primary);
+
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
 /* =========================
@@ -449,13 +577,16 @@ img {
 
 .timeline-content {
   padding: 28px;
-
   border: 1px solid var(--border);
   border-radius: 14px;
-
   background: white;
-
-  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+.timeline-content:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
 }
 
 .timeline-date {
@@ -793,11 +924,97 @@ img {
 }
 
 /* =========================
+   ACADEMIC & EXPERIENCE LOGOS
+========================= */
+
+.education-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.education-logo {
+  width: 82px;
+  height: 82px;
+
+  min-width: 82px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px;
+
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  background: var(--light);
+}
+
+.education-logo img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+.timeline-content {
+  position: relative;
+}
+
+.timeline-institution-logo {
+  position: absolute;
+
+  top: 22px;
+  right: 22px;
+
+  width: 72px;
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 9px;
+
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  background: var(--light);
+}
+
+.timeline-institution-logo img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+@media (max-width: 550px) {
+  .education-logo {
+    width: 68px;
+    height: 68px;
+
+    min-width: 68px;
+  }
+
+  .timeline-institution-logo {
+    position: static;
+
+    width: 64px;
+    height: 64px;
+
+    margin-bottom: 16px;
+  }
+}
+
+/* =========================
    CONTACT
 ========================= */
 
 .contact-section {
-  padding: 100px 0;
+  padding: 80px 0;
 
   background: var(--dark);
 
@@ -871,19 +1088,12 @@ img {
 
 .contact-button {
   display: block;
-
   padding: 16px;
-
   text-align: center;
-
   border-radius: 8px;
-
   background: var(--primary);
-
   color: white;
-
   font-weight: 800;
-
   transition:
     background 0.3s ease,
     transform 0.3s ease;
@@ -893,6 +1103,43 @@ img {
   background: var(--primary-dark);
 
   transform: translateY(-2px);
+}
+
+
+/* Contact CV Download */
+
+.contact-cv-action {
+  margin-top: 24px;
+}
+
+.contact-cv-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 22px;
+
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+
+  background: var(--primary);
+  color: white;
+
+  font-weight: 700;
+  text-decoration: none;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.contact-cv-button:hover {
+  transform: translateY(-3px);
+
+  background: var(--dark);
+
+  box-shadow: 0 12px 25px rgba(15, 23, 42, 0.12);
 }
 
 /* =========================
@@ -981,8 +1228,35 @@ img {
     display: block;
   }
 
+  .nav-dropdown {
+    width: 100%;
+  }
+
+  .nav-dropdown-button {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .nav-dropdown-menu {
+    position: static;
+    width: 100%;
+    display: none;
+    margin-top: 10px;
+    padding: 8px;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    background: var(--light);
+  }
+
+  .nav-dropdown:hover .nav-dropdown-menu,
+  .nav-dropdown:focus-within .nav-dropdown-menu {
+    display: flex;
+  }
+
   .section {
-    padding: 70px 0;
+    padding: 40px 0;
   }
 
   .section-header h2 {
@@ -1223,4 +1497,171 @@ img {
 .scholar-icon {
   background: #eef4ff;
   color: #4285f4;
+}
+/* =========================
+   PUBLICATIONS PAGE
+========================= */
+
+.publications-button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 45px;
+}
+
+.publications-button {
+  border: none;
+  padding: 17px 32px;
+  border-radius: 10px;
+  background: var(--primary);
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.2);
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.publications-button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 30px rgba(37, 99, 235, 0.28);
+}
+
+.publications-page {
+  min-height: 100vh;
+  background: var(--light);
+}
+
+.publications-navbar {
+  position: sticky;
+}
+
+.publication-logo {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.back-button {
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--dark);
+  padding: 11px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-button:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.publications-main {
+  padding: 80px 0 100px;
+}
+
+.publications-header {
+  margin-bottom: 45px;
+}
+
+.publications-header > p:first-child {
+  margin: 0 0 10px;
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.publications-header h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: -1px;
+}
+
+.publications-description {
+  margin: 15px 0 0;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.publications-table-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.publications-table {
+  width: 100%;
+  min-width: 1050px;
+  border-collapse: collapse;
+}
+
+.publications-table th,
+.publications-table td {
+  padding: 18px 20px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+
+.publications-table th {
+  background: #1e3a5f;
+  color: var(--white);
+  font-size: 0.85rem;
+  letter-spacing: 0.2px;
+}
+
+.publications-table td {
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 0.94rem;
+}
+
+.publications-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.publications-table tbody tr:hover {
+  background: #f8fbff;
+}
+
+.publication-link {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.publication-link:hover {
+  color: var(--primary-dark);
+}
+
+.empty-publications {
+  text-align: center;
+  padding: 50px !important;
+  color: var(--text);
+}
+
+@media (max-width: 550px) {
+  .publications-main {
+    padding: 55px 0 70px;
+  }
+
+  .back-button {
+    padding: 9px 12px;
+    font-size: 0.85rem;
+  }
+
+  .publications-button {
+    width: 100%;
+  }
 }

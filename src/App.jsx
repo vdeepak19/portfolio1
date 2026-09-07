@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
+import Publications from "./Publications";
 
 import {
   FaOrcid,
@@ -50,11 +51,46 @@ const researchHighlights = [
   },
 ];
 
+const teachingExpertise = [
+  {
+    category: "Programming & Software Development",
+    subjects: [
+      "C & C++",
+      "Java",
+      "Python",
+      "Python Full Stack Development",
+    ],
+  },
+  {
+    category: "Data & Artificial Intelligence",
+    subjects: [
+      "Data Mining",
+      "Data Analytics",
+      "Machine Learning",
+    ],
+  },
+  {
+    category: "Computer Science Fundamentals",
+    subjects: [
+      "Data Structures",
+      "Database Management Systems",
+    ],
+  },
+  {
+    category: "Cloud & Emerging Technologies",
+    subjects: [
+      "Cloud Computing",
+      "Internet of Things",
+    ],
+  },
+];
+
 const experience = [
   {
     date: "Jan 2018 – Present",
     role: "Assistant Professor",
     institution: "KL College of Engineering, KL University",
+    logo: "/logos/KLU.jpg",
     description:
       "Teaching, mentoring, and research in computer science and engineering at KL University, Vijayawada.",
   },
@@ -63,6 +99,7 @@ const experience = [
     role: "Assistant Professor",
     institution:
       "Vel Tech Multi Tech Dr. Rangarajan Dr. Sakunthala Engineering College",
+    logo: "/logos/veltech.jpg",
     description:
       "Contributed to teaching, departmental activities, accreditation work, placement initiatives, and student development in Chennai.",
   },
@@ -70,6 +107,36 @@ const experience = [
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(() =>
+    window.location.hash === "#/publications" ? "publications" : "home"
+  );
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentPage(
+        window.location.hash === "#/publications" ? "publications" : "home"
+      );
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+
+  const openPublications = () => {
+    setMenuOpen(false);
+    window.location.hash = "/publications";
+  };
+
+  const openHome = () => {
+    window.location.hash = "";
+  };
+
+  if (currentPage === "publications") {
+    return <Publications onBack={openHome} />;
+  };
 
   const closeMenu = () => {
     setMenuOpen(false);
@@ -94,37 +161,42 @@ function App() {
           <div
             className={`nav-links ${menuOpen ? "active" : ""}`}
           >
-            <a href="#home" onClick={closeMenu}>
-              Home
-            </a>
+            <a href="#home" onClick={closeMenu}>Home</a>
+            <a href="#about" onClick={closeMenu}>About</a>
+            <a href="#experience" onClick={closeMenu}>Experience</a>
 
-            <a href="#about" onClick={closeMenu}>
-              About
-            </a>
+            <div className="nav-dropdown">
+              <button type="button" className="nav-dropdown-button">
+                Academics <span>▾</span>
+              </button>
+              <div className="nav-dropdown-menu">
+                <a href="#skills" onClick={closeMenu}>Technical Skills</a>
+                <a href="#teaching" onClick={closeMenu}>Courses Developed & Delivered</a>
+                <a href="#certifications" onClick={closeMenu}>Certifications</a>
+                <a href="#academics" onClick={closeMenu}>Academic Background</a>
+              </div>
+            </div>
 
-            <a href="#skills" onClick={closeMenu}>
-              Skills
-            </a>
+            <div className="nav-dropdown">
+              <button type="button" className="nav-dropdown-button">
+                Research <span>▾</span>
+              </button>
+              <div className="nav-dropdown-menu">
+                <a href="#research" onClick={closeMenu}>Featured Work</a>
+                <a
+                  href="#/publications"
+                  onClick={() => {
+                    closeMenu();
+                    openPublications();
+                  }}
+                >
+                  Publications
+                </a>
+              </div>
+            </div>
 
-            <a href="#experience" onClick={closeMenu}>
-              Experience
-            </a>
-
-            <a href="#research" onClick={closeMenu}>
-              Research
-            </a>
-
-            <a href="#certifications" onClick={closeMenu}>
-              Certifications
-            </a>
-
-            <a href="#network" onClick={closeMenu}>
-              Network
-            </a>
-
-            <a href="#contact" onClick={closeMenu}>
-              Contact
-            </a>
+            <a href="#network" onClick={closeMenu}>Network</a>
+            <a href="#contact" onClick={closeMenu}>Contact</a>
           </div>
 
           <button
@@ -150,7 +222,7 @@ function App() {
             </p>
 
             <h1>
-              Dr. Deepak <span>V.</span>
+              Dr. Deepak. <span>V</span>
             </h1>
 
             <h2>
@@ -191,7 +263,7 @@ function App() {
 
             <img
               src="/Deepak1.png"
-              alt="Dr. Deepak V."
+              alt="Dr. Deepak. V"
               className="profile-image"
             />
 
@@ -218,7 +290,7 @@ function App() {
               <h3>Educator, Researcher & Mentor</h3>
 
               <p>
-                I bring 12.8 years of teaching and research experience in
+                I bring 13.5 years of teaching and research experience in
                 Computer Science and Engineering. My work combines data
                 analytics, artificial intelligence, cloud computing, and
                 practical software development.
@@ -236,12 +308,12 @@ function App() {
             <div className="stats-grid">
 
               <div className="stat-card">
-                <h3>12.8</h3>
+                <h3>13.5</h3>
                 <p>Years of Experience</p>
               </div>
 
               <div className="stat-card">
-                <h3>29</h3>
+                <h3>40+</h3>
                 <p>Publications</p>
               </div>
 
@@ -251,7 +323,7 @@ function App() {
               </div>
 
               <div className="stat-card">
-                <h3>200+</h3>
+                <h3>300+</h3>
                 <p>Scopus Citations</p>
               </div>
 
@@ -263,9 +335,58 @@ function App() {
 
       </section>
 
-      {/* ================= SKILLS ================= */}
+<section id="experience" className="section">
 
-      <section id="skills" className="section section-light">
+        <div className="container">
+
+          <div className="section-header">
+            <p>CAREER</p>
+            <h2>Professional Experience</h2>
+          </div>
+
+          <div className="timeline">
+
+            {experience.map((item) => (
+
+              <div
+                className="timeline-item"
+                key={item.institution}
+              >
+
+                <div className="timeline-dot" />
+
+                <div className="timeline-content">
+
+                  <div className="timeline-institution-logo">
+                    <img
+                      src={item.logo}
+                      alt={`${item.institution} logo`}
+                    />
+                  </div>
+
+                  <span className="timeline-date">
+                    {item.date}
+                  </span>
+
+                  <h3>{item.role}</h3>
+
+                  <h4>{item.institution}</h4>
+
+                  <p>{item.description}</p>
+
+                </div>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        </div>
+
+      </section>
+
+<section id="skills" className="section section-light">
 
         <div className="container">
 
@@ -291,39 +412,33 @@ function App() {
 
       </section>
 
-      {/* ================= EXPERIENCE ================= */}
-
-      <section id="experience" className="section">
+<section id="teaching" className="section">
 
         <div className="container">
 
           <div className="section-header">
-            <p>CAREER</p>
-            <h2>Professional Experience</h2>
+            <p>ACADEMICS</p>
+            <h2>Courses Developed & Delivered</h2>
           </div>
 
-          <div className="timeline">
+          <div className="teaching-grid">
 
-            {experience.map((item) => (
+            {teachingExpertise.map((area) => (
 
               <div
-                className="timeline-item"
-                key={item.institution}
+                className="teaching-card"
+                key={area.category}
               >
 
-                <div className="timeline-dot" />
+                <h3>{area.category}</h3>
 
-                <div className="timeline-content">
+                <div className="subject-list">
 
-                  <span className="timeline-date">
-                    {item.date}
-                  </span>
-
-                  <h3>{item.role}</h3>
-
-                  <h4>{item.institution}</h4>
-
-                  <p>{item.description}</p>
+                  {area.subjects.map((subject) => (
+                    <span key={subject}>
+                      {subject}
+                    </span>
+                  ))}
 
                 </div>
 
@@ -337,57 +452,7 @@ function App() {
 
       </section>
 
-      {/* ================= RESEARCH ================= */}
-
-      <section id="research" className="section section-light">
-
-        <div className="container">
-
-          <div className="section-header">
-            <p>RESEARCH & INNOVATION</p>
-            <h2>Featured Work</h2>
-          </div>
-
-          <div className="projects-grid">
-
-            {researchHighlights.map((project, index) => (
-
-              <article
-                className="project-card"
-                key={project.title}
-              >
-
-                <div className="project-number">
-                  0{index + 1}
-                </div>
-
-                <h3>{project.title}</h3>
-
-                <p>{project.description}</p>
-
-                <div className="technology-list">
-
-                  {project.technologies.map((tech) => (
-                    <span key={tech}>
-                      {tech}
-                    </span>
-                  ))}
-
-                </div>
-
-              </article>
-
-            ))}
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* ================= CERTIFICATIONS ================= */}
-
-      <section
+<section
         id="certifications"
         className="section certifications-section"
       >
@@ -540,9 +605,123 @@ function App() {
 
       </section>
 
-      {/* ================= PROFESSIONAL NETWORK ================= */}
+<section id="academics" className="section">
 
-      <section
+        <div className="container">
+
+          <div className="section-header">
+            <p>EDUCATION & CREDENTIALS</p>
+            <h2>Academic Background</h2>
+          </div>
+
+          <div className="education-grid">
+
+            <div className="education-card">
+
+              <span>01</span>
+
+              <h3>
+                Ph.D. — Big Data Analytics
+              </h3>
+
+              <p>
+                KL College of Engineering, Koneru Lakshmaiah Education
+                Foundation, KL University · 2023
+              </p>
+
+            </div>
+
+            <div className="education-card">
+
+              <span>02</span>
+
+              <h3>
+                M.Tech — Computer Science & Engineering
+              </h3>
+
+              <p>
+                Faculty of Engineering and Technology, SRM University · 2012
+              </p>
+
+            </div>
+
+            <div className="education-card">
+
+              <span>03</span>
+
+              <h3>
+                B.Tech — Information Technology
+              </h3>
+
+              <p>
+                Saveetha School of Engineering, Saveetha University · 2010
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+<section id="research" className="section section-light">
+
+        <div className="container">
+
+          <div className="section-header">
+            <p>RESEARCH & INNOVATION</p>
+            <h2>Featured Work</h2>
+          </div>
+
+          <div className="projects-grid">
+
+            {researchHighlights.map((project, index) => (
+
+              <article
+                className="project-card"
+                key={project.title}
+              >
+
+                <div className="project-number">
+                  0{index + 1}
+                </div>
+
+                <h3>{project.title}</h3>
+
+                <p>{project.description}</p>
+
+                <div className="technology-list">
+
+                  {project.technologies.map((tech) => (
+                    <span key={tech}>
+                      {tech}
+                    </span>
+                  ))}
+
+                </div>
+
+              </article>
+
+            ))}
+
+          </div>
+
+          <div className="publications-button-wrapper">
+            <button
+              type="button"
+              className="publications-button"
+              onClick={openPublications}
+            >
+              View All Publications
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+<section
         id="network"
         className="section professional-network-section"
       >
@@ -782,67 +961,33 @@ function App() {
 
       </section>
 
+      {/* ================= SKILLS ================= */}
+
+      
+
+      {/* ================= TEACHING EXPERTISE ================= */}
+
+      
+
+      {/* ================= EXPERIENCE ================= */}
+
+      
+
+      {/* ================= RESEARCH ================= */}
+
+      
+
+      {/* ================= CERTIFICATIONS ================= */}
+
+      
+
+      {/* ================= PROFESSIONAL NETWORK ================= */}
+
+      
+
       {/* ================= EDUCATION ================= */}
 
-      <section className="section">
-
-        <div className="container">
-
-          <div className="section-header">
-            <p>EDUCATION & CREDENTIALS</p>
-            <h2>Academic Background</h2>
-          </div>
-
-          <div className="education-grid">
-
-            <div className="education-card">
-
-              <span>01</span>
-
-              <h3>
-                Ph.D. — Big Data Analytics
-              </h3>
-
-              <p>
-                KL College of Engineering, Koneru Lakshmaiah Education
-                Foundation, KL University · 2023
-              </p>
-
-            </div>
-
-            <div className="education-card">
-
-              <span>02</span>
-
-              <h3>
-                M.Tech — Computer Science & Engineering
-              </h3>
-
-              <p>
-                Faculty of Engineering and Technology, SRM University · 2012
-              </p>
-
-            </div>
-
-            <div className="education-card">
-
-              <span>03</span>
-
-              <h3>
-                B.Tech — Information Technology
-              </h3>
-
-              <p>
-                Saveetha School of Engineering, Saveetha University · 2010
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
+      
 
       {/* ================= CONTACT ================= */}
 
@@ -862,6 +1007,16 @@ function App() {
               Reach out for academic collaboration, research discussions,
               mentoring, or technology-focused initiatives.
             </p>
+
+              <div className="contact-cv-action">
+                <a
+                  href="/Deepak_V_CV.pdf"
+                  download
+                  className="contact-cv-button"
+                >
+                  Download CV
+                </a>
+              </div>
 
           </div>
 
@@ -917,7 +1072,7 @@ function App() {
         <div className="container footer-container">
 
           <p>
-            © {new Date().getFullYear()} Dr. Deepak V.
+            © {new Date().getFullYear()} Dr. Deepak. V
             All rights reserved.
           </p>
 
