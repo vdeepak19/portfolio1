@@ -53,12 +53,12 @@ const researchHighlights = [
 
 const teachingExpertise = [
   {
-    category: "Programming & Software Development",
+    category: "Database Systems Engineering & Distributed Backend Development",
     subjects: [
-      "C & C++",
-      "Java",
+      "FastApi",
+      "node.js",
       "Python",
-      "Python Full Stack Development",
+      "MongoDB",
     ],
   },
   {
@@ -70,10 +70,11 @@ const teachingExpertise = [
     ],
   },
   {
-    category: "Computer Science Fundamentals",
+    category: "Front End Development Frameworks",
     subjects: [
-      "Data Structures",
-      "Database Management Systems",
+      "React.js",
+      "Redux",
+      "Tailwind CSS",
     ],
   },
   {
@@ -714,6 +715,13 @@ function App() {
               onClick={openPublications}
             >
               View All Publications
+            </button>
+                        <button
+              type="button"
+              className="publications-button"
+              onClick={openPublications}
+            >
+              Journal Reviewer
             </button>
           </div>
 
