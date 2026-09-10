@@ -34,7 +34,7 @@ img {
 }
 
 .container {
-  width: min(1150px, 90%);
+  width: min(1250px, 90%);
   margin: auto;
 }
 
@@ -64,8 +64,8 @@ img {
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--dark);
-  align-items: left;
-  margin-left: -8rem;
+  align-items: let;
+  margin-left: -4rem;
 }
 
 .logo span {
@@ -75,7 +75,7 @@ img {
 .nav-links {
   display: flex;
   gap: 28px;
-  padding-left: 20rem;
+  padding-left: 10rem;
 }
 
 .nav-links a {
