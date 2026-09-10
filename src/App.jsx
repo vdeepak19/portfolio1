@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Publications from "./Publications";
+import JournalReviewer from "./JournalReviewer";
+import { Analytics } from "@vercel/analytics/react";
 
 import {
   FaOrcid,
@@ -108,29 +110,60 @@ const experience = [
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState(() =>
-    window.location.hash === "#/publications" ? "publications" : "home"
-  );
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
 
   useEffect(() => {
-    const handleHashChange = () => {
-      setCurrentPage(
-        window.location.hash === "#/publications" ? "publications" : "home"
-      );
-    };
+    document.documentElement.setAttribute(
+      "data-theme",
+      darkMode ? "dark" : "light"
+    );
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
 
-    window.addEventListener("hashchange", handleHashChange);
+const [currentPage, setCurrentPage] = useState(() => {
+  if (window.location.hash === "#/publications") {
+    return "publications";
+  }
 
-    return () => {
-      window.removeEventListener("hashchange", handleHashChange);
-    };
-  }, []);
+  if (window.location.hash === "#/journal-reviewer") {
+    return "journal-reviewer";
+  }
+
+  return "home";
+});
+
+useEffect(() => {
+  const handleHashChange = () => {
+    if (window.location.hash === "#/publications") {
+      setCurrentPage("publications");
+    } else if (window.location.hash === "#/journal-reviewer") {
+      setCurrentPage("journal-reviewer");
+    } else {
+      setCurrentPage("home");
+    }
+  };
+
+  window.addEventListener("hashchange", handleHashChange);
+
+  return () => {
+    window.removeEventListener("hashchange", handleHashChange);
+  };
+}, []);
+
+  const toggleDarkMode = () => {
+    setDarkMode((current) => !current);
+  };
 
   const openPublications = () => {
     setMenuOpen(false);
     window.location.hash = "/publications";
   };
-
+const openJournalReviewer = () => {
+  setMenuOpen(false);
+  window.location.hash = "/journal-reviewer";
+};
   const openHome = () => {
     window.location.hash = "";
   };
@@ -138,7 +171,9 @@ function App() {
   if (currentPage === "publications") {
     return <Publications onBack={openHome} />;
   };
-
+if (currentPage === "journal-reviewer") {
+  return <JournalReviewer onBack={openHome} />;
+}
   const closeMenu = () => {
     setMenuOpen(false);
   };
@@ -193,12 +228,36 @@ function App() {
                 >
                   Publications
                 </a>
+                <a
+  href="#/journal-reviewer"
+  onClick={() => {
+    closeMenu();
+    openJournalReviewer();
+  }}
+>
+  Journal Reviewer
+</a>
               </div>
             </div>
 
             <a href="#network" onClick={closeMenu}>Network</a>
             <a href="#contact" onClick={closeMenu}>Contact</a>
           </div>
+
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={toggleDarkMode}
+            aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+            title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            <span className="theme-toggle-icon">
+              {darkMode ? "☀" : "☾"}
+            </span>
+            <span className="theme-toggle-text">
+              {darkMode ? "Light" : "Dark"}
+            </span>
+          </button>
 
           <button
             className="menu-button"
@@ -719,7 +778,7 @@ function App() {
                         <button
               type="button"
               className="publications-button"
-              onClick={openPublications}
+              onClick={openJournalReviewer}
             >
               Journal Reviewer
             </button>
@@ -1091,7 +1150,7 @@ function App() {
         </div>
 
       </footer>
-
+<Analytics />
     </div>
   );
 }

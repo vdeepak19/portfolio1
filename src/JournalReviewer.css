@@ -1,0 +1,319 @@
+/* =========================================================
+   JournalReviewer.css
+   Scoped styles for JournalReviewer.jsx
+   Reuses the Publications page visual language while keeping
+   all rules isolated from the Home page.
+   ========================================================= */
+
+.publications-page {
+  --review-primary: #2563eb;
+  --review-primary-dark: #1d4ed8;
+  --review-bg: #f8fafc;
+  --review-surface: #ffffff;
+  --review-text: #334155;
+  --review-heading: #0f172a;
+  --review-muted: #64748b;
+  --review-border: #e2e8f0;
+  --review-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+
+  min-height: 100vh;
+  background: var(--review-bg);
+  color: var(--review-text);
+}
+
+html[data-theme="dark"] .publications-page {
+  --review-bg: #0f172a;
+  --review-surface: #111c31;
+  --review-text: #cbd5e1;
+  --review-heading: #f8fafc;
+  --review-muted: #94a3b8;
+  --review-border: #334155;
+  --review-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+}
+
+/* ================= NAVBAR ================= */
+
+.publications-page .publications-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  width: 100%;
+  background: color-mix(in srgb, var(--review-surface) 92%, transparent);
+  border-bottom: 1px solid var(--review-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.publications-page .publications-navbar .nav-container {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.publications-page .publication-logo {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+
+  color: var(--review-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.publications-page .publication-logo span {
+  color: var(--review-primary);
+}
+
+.publications-page .publication-logo:hover {
+  color: var(--review-primary);
+}
+
+.publications-page .back-button {
+  appearance: none;
+  border: 1px solid var(--review-border);
+  background: var(--review-surface);
+  color: var(--review-text);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.publications-page .back-button:hover {
+  color: var(--review-primary);
+  border-color: var(--review-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.12);
+}
+
+/* ================= MAIN ================= */
+
+.publications-page .publications-main {
+  min-height: calc(100vh - 72px);
+  padding: 72px 0 90px;
+}
+
+.publications-page .publications-header {
+  max-width: 850px;
+  margin: 0 auto 38px;
+  text-align: center;
+}
+
+.publications-page .publications-header > p:first-child {
+  margin: 0 0 10px;
+  color: var(--review-primary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.publications-page .publications-header h1 {
+  margin: 0;
+  color: var(--review-heading);
+  font-size: clamp(2.25rem, 5vw, 3.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.publications-page .publications-description {
+  max-width: 680px;
+  margin: 16px auto 0;
+  color: var(--review-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+/* ================= TABLE CARD ================= */
+
+.publications-page .publications-table-card {
+  width: 100%;
+  overflow: hidden;
+  background: var(--review-surface);
+  border: 1px solid var(--review-border);
+  border-radius: 18px;
+  box-shadow: var(--review-shadow);
+}
+
+.publications-page .table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.publications-page .publications-table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+  color: var(--review-text);
+}
+
+.publications-page .publications-table th,
+.publications-page .publications-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--review-border);
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.publications-page .publications-table th {
+  background: var(--review-primary);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.publications-page .publications-table tbody tr {
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.publications-page .publications-table tbody tr:hover {
+  background: rgba(37, 99, 235, 0.045);
+}
+
+html[data-theme="dark"] .publications-page .publications-table tbody tr:hover {
+  background: rgba(96, 165, 250, 0.07);
+}
+
+.publications-page .publications-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.publications-page .publications-table td:first-child,
+.publications-page .publications-table th:first-child {
+  width: 72px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.publications-page .publications-table td:nth-child(4),
+.publications-page .publications-table th:nth-child(4) {
+  white-space: nowrap;
+}
+
+.publications-page .publications-table td:nth-child(5),
+.publications-page .publications-table th:nth-child(5) {
+  white-space: nowrap;
+}
+
+/* ================= LINKS ================= */
+
+.publications-page .publication-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 118px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--review-primary);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.publications-page .publication-link:hover {
+  background: var(--review-primary);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.publications-page .empty-publications {
+  padding: 55px 24px !important;
+  color: var(--review-muted);
+  text-align: center !important;
+  font-size: 0.95rem;
+}
+
+/* ================= ACCESSIBILITY ================= */
+
+.publications-page .publication-logo:focus-visible,
+.publications-page .back-button:focus-visible,
+.publications-page .publication-link:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.28);
+  outline-offset: 3px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 850px) {
+  .publications-page .publications-main {
+    padding: 56px 0 70px;
+  }
+
+  .publications-page .publications-header {
+    margin-bottom: 30px;
+  }
+
+  .publications-page .publications-table-card {
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 550px) {
+  .publications-page .publications-navbar .nav-container {
+    min-height: 64px;
+    gap: 12px;
+  }
+
+  .publications-page .publication-logo {
+    font-size: 1.3rem;
+  }
+
+  .publications-page .back-button {
+    padding: 9px 12px;
+    font-size: 0.8rem;
+  }
+
+  .publications-page .publications-main {
+    min-height: calc(100vh - 64px);
+    padding: 42px 0 60px;
+  }
+
+  .publications-page .publications-header h1 {
+    font-size: 2rem;
+  }
+
+  .publications-page .publications-description {
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .publications-page .publications-table th,
+  .publications-page .publications-table td {
+    padding: 13px 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .publications-page .back-button,
+  .publications-page .publications-table tbody tr,
+  .publications-page .publication-link {
+    transition: none;
+  }
+}

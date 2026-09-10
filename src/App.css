@@ -45,17 +45,16 @@ img {
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 500;
 
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
 
-  border-bottom: 1px solid var(--border);
+  border-bottom: 2px solid var(--border);
 }
 
 .nav-container {
   height: 72px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -65,6 +64,8 @@ img {
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--dark);
+  align-items: left;
+  margin-left: -8rem;
 }
 
 .logo span {
@@ -74,6 +75,7 @@ img {
 .nav-links {
   display: flex;
   gap: 28px;
+  padding-left: 20rem;
 }
 
 .nav-links a {
@@ -180,7 +182,8 @@ img {
   background:
     radial-gradient(
       circle at 80% 20%,
-      rgba(37, 99, 235, 0.12),
+      rgba(14, 77, 212, 0.12),
+         /* rgba(37, 99, 235, 0.12), */
       transparent 30%
     ),
     var(--light);
@@ -203,7 +206,7 @@ img {
 }
 
 .hero h1 {
-  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-size: clamp(3rem, 5vw, 5rem);
   line-height: 1;
 
   margin: 15px 0;
@@ -1579,7 +1582,7 @@ img {
 
 .publications-header h1 {
   margin: 0;
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.3rem, 4.5vw, 3rem);
   letter-spacing: -1px;
 }
 
@@ -1664,5 +1667,266 @@ img {
 
   .publications-button {
     width: 100%;
+  }
+}
+
+
+/* =========================
+   DARK / LIGHT MODE
+   ========================= */
+
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body,
+.navbar,
+.nav-links,
+.nav-dropdown-menu,
+.hero,
+.section,
+.about-card,
+.skill-card,
+.teaching-card,
+.timeline-content,
+.project-card,
+.certification-card,
+.network-card,
+.education-card,
+.contact-card,
+.publications-page,
+.publications-table-card,
+.back-button {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Theme toggle button */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: right;
+  justify-content: right;
+  gap: 7px;
+  min-width: 78px;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--white);
+  color: var(--dark);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.1);
+}
+
+.theme-toggle-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.theme-toggle-text {
+  line-height: 1;
+}
+
+/* =========================
+   DARK THEME
+========================= */
+
+html[data-theme="dark"] {
+  --dark: #f1f5f9;
+  --dark-light: #e2e8f0;
+  --text: #cbd5e1;
+  --light: #111827;
+  --white: #0f172a;
+  --border: #334155;
+  color-scheme: dark;
+}
+
+html[data-theme="dark"] body {
+  color: var(--dark);
+  background: #0b1120;
+}
+
+html[data-theme="dark"] .navbar {
+  background: rgba(15, 23, 42, 0.95);
+}
+
+html[data-theme="dark"] .nav-links a,
+html[data-theme="dark"] .nav-dropdown-button {
+  color: var(--text);
+}
+
+html[data-theme="dark"] .nav-links a:hover,
+html[data-theme="dark"] .nav-dropdown-button:hover {
+  color: var(--primary);
+}
+
+html[data-theme="dark"] .nav-dropdown-menu {
+  background: var(--white);
+  border-color: var(--border);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .nav-dropdown-menu a:hover {
+  background: #1e3a5f;
+}
+
+html[data-theme="dark"] .hero {
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(37, 99, 235, 0.18),
+      transparent 30%
+    ),
+    var(--light);
+}
+
+html[data-theme="dark"] .hero h1,
+html[data-theme="dark"] .section-header h2,
+html[data-theme="dark"] .about-card h3,
+html[data-theme="dark"] .timeline-content h3,
+html[data-theme="dark"] .project-card h3,
+html[data-theme="dark"] .education-card h3 {
+  color: var(--dark);
+}
+
+html[data-theme="dark"] .about-card,
+html[data-theme="dark"] .skill-card,
+html[data-theme="dark"] .teaching-card,
+html[data-theme="dark"] .timeline-content,
+html[data-theme="dark"] .project-card,
+html[data-theme="dark"] .certification-card,
+html[data-theme="dark"] .network-card,
+html[data-theme="dark"] .education-card {
+  background: #0f172a;
+  border-color: var(--border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme="dark"] .skill-card {
+  color: var(--dark);
+}
+
+html[data-theme="dark"] .skill-card:hover {
+  color: white;
+}
+
+html[data-theme="dark"] .subject-list span,
+html[data-theme="dark"] .technology-list span,
+html[data-theme="dark"] .network-icon {
+  background: #172554;
+}
+
+html[data-theme="dark"] .timeline-dot {
+  border-color: #0f172a;
+}
+
+html[data-theme="dark"] .certification-logo,
+html[data-theme="dark"] .education-logo {
+  background: #111827;
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .network-card {
+  color: var(--dark);
+}
+
+html[data-theme="dark"] .contact-section {
+  background: #020617;
+}
+
+html[data-theme="dark"] .contact-card {
+  background: #0f172a;
+  color: var(--dark);
+  border: 1px solid var(--border);
+}
+
+html[data-theme="dark"] .contact-item {
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .footer {
+  background: #020617;
+}
+
+html[data-theme="dark"] .publications-page {
+  background: var(--light);
+}
+
+html[data-theme="dark"] .publications-table-card {
+  background: var(--white);
+  border-color: var(--border);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+}
+
+html[data-theme="dark"] .publications-table td {
+  color: var(--text);
+}
+
+html[data-theme="dark"] .publications-table tbody tr:hover {
+  background: #172033;
+}
+
+html[data-theme="dark"] .back-button {
+  background: var(--white);
+  color: var(--dark);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .theme-toggle {
+  background: #1e293b;
+  color: #f8fafc;
+  border-color: #475569;
+}
+
+html[data-theme="dark"] .theme-toggle:hover {
+  color: #93c5fd;
+  border-color: #3b82f6;
+}
+
+/* =========================
+   DARK MODE - MOBILE NAV
+========================= */
+
+@media (max-width: 850px) {
+  .theme-toggle {
+    margin-left: auto;
+    margin-right: 12px;
+  }
+
+  html[data-theme="dark"] .nav-links {
+    background: #0f172a;
+    border-bottom-color: var(--border);
+  }
+}
+
+@media (max-width: 550px) {
+  .theme-toggle {
+    min-width: 44px;
+    width: 44px;
+    height: 40px;
+    padding: 8px;
+    margin-right: 8px;
+  }
+
+  .theme-toggle-text {
+    display: none;
   }
 }
