@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import "./App.css";
 import Publications from "./Publications";
 
@@ -136,7 +137,12 @@ function App() {
   };
 
   if (currentPage === "publications") {
-    return <Publications onBack={openHome} />;
+    return (
+      <>
+        <Publications onBack={openHome} />
+        <Analytics />
+      </>
+    );
   };
 
   const closeMenu = () => {
@@ -1092,6 +1098,7 @@ function App() {
 
       </footer>
 
+      <Analytics />
     </div>
   );
 }
