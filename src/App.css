@@ -34,7 +34,7 @@ img {
 }
 
 .container {
-  width: min(1290px, 98%);
+  width: min(1500px, 100%);
   margin: auto;
 }
 
@@ -64,8 +64,9 @@ img {
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--dark);
-  align-items: let;
-  margin-left: -4rem;
+  align-items: center;
+  margin-left: 0;
+  white-space: nowrap;
 }
 
 .logo span {
@@ -1284,6 +1285,39 @@ img {
 /* =========================
    MOBILE RESPONSIVE
 ========================= */
+@media (max-width: 550px) {
+
+  .logo {
+    margin-left: 0;
+    font-size: 1.2rem;
+    white-space: nowrap;
+  }
+
+}
+
+@media (max-width: 550px) {
+
+  .nav-container {
+    width: 100%;
+    padding: 0 15px;
+  }
+
+  .logo {
+    margin-left: 0;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    padding-left: 25px;
+  }
+
+  .menu-button {
+    flex-shrink: 0;
+  }
+
+}
 
 @media (max-width: 550px) {
 
@@ -1529,6 +1563,52 @@ img {
   background: var(--primary-dark);
   transform: translateY(-3px);
   box-shadow: 0 16px 30px rgba(37, 99, 235, 0.28);
+}
+
+/* 📱 Mobile */
+@media (max-width: 768px) {
+  .publications-button {
+    padding: 13px 22px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    max-width: 90%;
+    white-space: nowrap;
+  }
+}
+@media (max-width: 768px) {
+  .publications-button-wrapper {
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
+
+  .publications-button {
+    padding: 13px 20px;
+    font-size: 0.9rem;
+    max-width: 100%;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .publications-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 15px;
+    gap: 10px;
+    box-sizing: border-box;
+  }
+
+  .publications-navigation .publications-button {
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    max-width: 48%;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
 }
 
 .publications-page {
@@ -1923,7 +2003,7 @@ html[data-theme="dark"] .theme-toggle:hover {
     width: 44px;
     height: 40px;
     padding: 8px;
-    margin-right: 8px;
+    margin-right: 12px;
   }
 
   .theme-toggle-text {
