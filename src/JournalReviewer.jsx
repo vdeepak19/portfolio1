@@ -172,7 +172,7 @@ function JournalReviewer({ onBack }) {
               <strong>Academic Service:</strong> Peer reviewer for
               international journals covering areas of computer
               science, artificial intelligence, big data, networking,
-              and related technologies.
+              and related technologies....
             </p>
           </div>
         </div>
