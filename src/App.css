@@ -302,13 +302,14 @@ img {
   justify-content: center;
 
   padding-top: 20px;
+  padding-right: 200px;
 }
 
 .image-background {
   position: absolute;
 
-  width: 380px;
-  height: 450px;
+ width: 400px;
+height: 480px;
 
   background: var(--primary);
 
@@ -322,8 +323,8 @@ img {
 .profile-image {
   position: relative;
 
-  width: 380px;
-  height: 450px;
+width: 400px;
+height: 480px;
 
   object-fit: cover;
 
@@ -412,15 +413,10 @@ img {
 
 .stat-card {
   padding: 25px;
-
   border-radius: 16px;
-
-  background: #bc5757;
-
+  background: #8f2525;
   color: white;
-
   text-align: center;
-
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
@@ -434,14 +430,13 @@ img {
 
 .stat-card h3 {
   margin: 0;
-
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
 .stat-card p {
   margin-bottom: 0;
-
-  color: #cbd5e1;
+  color: #f8f9fb;
+    font-size: 1.5rem;
 }
 
 /* =========================
@@ -1571,36 +1566,42 @@ img {
     padding: 13px 22px;
     font-size: 0.9rem;
     border-radius: 8px;
-    max-width: 90%;
+    max-width: 60%;
     white-space: nowrap;
   }
 }
 @media (max-width: 768px) {
+
   .publications-button-wrapper {
     width: 100%;
     padding: 0 15px;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
   }
 
   .publications-button {
-    padding: 13px 20px;
-    font-size: 0.9rem;
+    width: auto;
     max-width: 100%;
+    padding: 12px 16px;
+    font-size: 0.9rem;
     box-sizing: border-box;
-    white-space: nowrap;
+    white-space: normal;
+    text-align: center;
+    overflow-wrap: break-word;
   }
-}
 
-@media (max-width: 768px) {
   .publications-navigation {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    max-width: 100%;
     padding: 0 15px;
     gap: 10px;
     box-sizing: border-box;
   }
+}
 
   .publications-navigation .publications-button {
     padding: 12px 16px;

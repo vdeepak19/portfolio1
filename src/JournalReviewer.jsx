@@ -1,37 +1,59 @@
-import "./App.css";
+import "./JournalReviewer.css";
 
 const reviewedJournals = [
   {
-    journal: "Journal Name 1",
-    publisher: "Publisher Name",
-    issn: "XXXX-XXXX",
+    journal: "Neural Processing Letters",
+    publisher: "Springer Nature",
+    issn: "0893-6080",
     role: "Reviewer",
     year: "2025",
-    link: "#",
+    link: "https://link.springer.com/journal/11063",
   },
   {
-    journal: "Journal Name 2",
-    publisher: "Publisher Name",
-    issn: "XXXX-XXXX",
+    journal: "Discover Computing",
+    publisher: "Springer Nature",
+    issn: "2948-3007",
     role: "Reviewer",
-    year: "2024",
-    link: "#",
+    year: "2025",
+    link: "https://link.springer.com/journal/10791",
+  },
+  {
+    journal: "Wireless Personal Communications",
+    publisher: "Springer Nature",
+    issn: "0929-6212",
+    role: "Reviewer",
+    year: "2025",
+    link: "https://link.springer.com/journal/11277",
+  },
+  {
+    journal: "Journal of Big Data",
+    publisher: "Springer Nature",
+    issn: "2196-1115",
+    role: "Reviewer",
+    year: "2025",
+    link: "https://journalofbigdata.springeropen.com/",
+  },
+  {
+    journal: "SN Computer Science",
+    publisher: "Springer Nature",
+    issn: "2661-8907",
+    role: "Reviewer",
+    year: "2025",
+    link: "https://link.springer.com/journal/42979",
   },
 ];
 
 function JournalReviewer({ onBack }) {
   return (
     <div className="publications-page">
-
       {/* ================= NAVBAR ================= */}
-
       <nav className="navbar publications-navbar">
         <div className="container nav-container">
-
           <button
             type="button"
             className="logo publication-logo"
             onClick={onBack}
+            aria-label="Back to portfolio"
           >
             Deepak<span>.</span>
           </button>
@@ -43,17 +65,15 @@ function JournalReviewer({ onBack }) {
           >
             ← Back to Portfolio
           </button>
-
         </div>
       </nav>
 
       {/* ================= MAIN ================= */}
-
       <main className="publications-main">
         <div className="container">
-
+          {/* ================= HEADER ================= */}
           <div className="publications-header">
-            <p>ACADEMIC SERVICE & PEER REVIEW</p>
+            <p>ACADEMIC SERVICE &amp; PEER REVIEW</p>
 
             <h1>Journal Reviewer</h1>
 
@@ -64,13 +84,9 @@ function JournalReviewer({ onBack }) {
           </div>
 
           {/* ================= REVIEWER TABLE ================= */}
-
           <div className="publications-table-card">
-
             <div className="table-responsive">
-
               <table className="publications-table">
-
                 <thead>
                   <tr>
                     <th>S.No.</th>
@@ -85,32 +101,48 @@ function JournalReviewer({ onBack }) {
 
                 <tbody>
                   {reviewedJournals.length > 0 ? (
-
                     reviewedJournals.map((journal, index) => (
                       <tr
                         key={`${journal.journal}-${index}`}
                       >
-                        <td>{index + 1}</td>
+                        <td data-label="S.No.">
+                          {index + 1}
+                        </td>
 
-                        <td>{journal.journal}</td>
+                        <td
+                          data-label="Journal Name"
+                          className="journal-name"
+                        >
+                          {journal.journal}
+                        </td>
 
-                        <td>{journal.publisher}</td>
+                        <td data-label="Publisher">
+                          {journal.publisher}
+                        </td>
 
-                        <td>{journal.issn}</td>
+                        <td data-label="ISSN">
+                          {journal.issn}
+                        </td>
 
-                        <td>{journal.role}</td>
+                        <td data-label="Role">
+                          <span className="reviewer-badge">
+                            {journal.role}
+                          </span>
+                        </td>
 
-                        <td>{journal.year}</td>
+                        <td data-label="Year">
+                          {journal.year}
+                        </td>
 
-                        <td>
+                        <td data-label="Link">
                           {journal.link ? (
                             <a
                               href={journal.link}
                               target="_blank"
-                              rel="noreferrer"
+                              rel="noopener noreferrer"
                               className="publication-link"
                             >
-                              View Journal
+                              View Journal ↗
                             </a>
                           ) : (
                             "—"
@@ -118,9 +150,7 @@ function JournalReviewer({ onBack }) {
                         </td>
                       </tr>
                     ))
-
                   ) : (
-
                     <tr>
                       <td
                         colSpan="7"
@@ -130,22 +160,25 @@ function JournalReviewer({ onBack }) {
                         without changing the portfolio content.
                       </td>
                     </tr>
-
                   )}
                 </tbody>
-
               </table>
-
             </div>
-
           </div>
 
+          {/* ================= FOOTNOTE ================= */}
+          <div className="reviewer-note">
+            <p>
+              <strong>Academic Service:</strong> Peer reviewer for
+              international journals covering areas of computer
+              science, artificial intelligence, big data, networking,
+              and related technologies.
+            </p>
+          </div>
         </div>
       </main>
-
     </div>
   );
 }
 
 export default JournalReviewer;
-
